@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AutoEditTextView">
+        <!--//左侧设置的文字，如果设置了就显示，不设置就不显示-->
+        <attr name="leftText" format="string" />
+        <!--左侧文字的颜色-->
+        <attr name="leftTextColor" format="color" />
+        <!--左侧文字的大小-->
+        <attr name="leftTextSize" format="float" />
+        <!--左侧文字距离光标的距离-->
+        <attr name="leftTextPadding" format="integer" />
+        <!--右侧图标点击需要处理的类型 0 删除当前内容 1隐藏和显示密码-->
+        <attr name="rightButtonClickType" format="integer" />
+        <!--是否要显示底部的线-->
+        <attr name="isShowDownLine" format="boolean" />
+        <!--设置底部线默认的颜色-->
+        <attr name="downLineDefaultColor" format="color"/>
+        <!--设置EditText获取焦点之后底部线的颜色-->
+        <attr name="downLineFocusColor" format="color"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,12 @@
+################南昌url配置##########################
+##驾车路径规划导航服务地址
+route_car_url=https://gis.sf-express.com/mms/navi
+##地图数据服务地址
+sf_map_url=https://gis.sf-express.com/mms/ds
+##网络定位服务地址
+net_location_url=https://gis.sf-express.com/nloc/locationapi
+##Gps定位服务地址
+gps_location_url=https://gis.sf-express.com/nloc/gpsapi
+##逆地理编码服务地址-生产
+api_rgeo_url=https://gis.sf-express.com/rgeo/api
+################南昌url配置##########################

@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        common {
+            keyAlias 'common'
+            keyPassword 'sf123456'
+            storeFile file('../keystore.jks')
+            storePassword 'sf123456'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        ndk {
+            abiFilter "armeabi" //, "armeabi", "x86" 按需设置armeabi-v7a
+        }
+
+        applicationId "com.sfmap.map.demo"
+        minSdkVersion 18
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.common
+        }
+        debug {
+            signingConfig signingConfigs.common
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []  //这一行加不加都可以
+            jniLibs.srcDirs = ['libs']//这个必须加，因为我们把.so文件放在了libs文件夹中
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'com.android.support:support-v4:27.1.0'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation(name: 'sfmap-mapsdk-V1.0-20200717', ext: 'aar')
+    implementation(name: 'sfmap-navisdk-V1.0-20200717', ext: 'aar')
+    implementation(name: 'sfmap-locsdk-V1.0-20191127', ext: 'aar')
+    /** 支持Gson解析  **/
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //科大讯飞语音
+    implementation('com.jakewharton:butterknife:8.6.0') {
+        exclude module: 'support-compat'
+    }
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    implementation files('libs/Msc.jar')
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    /** Android 支持 RxJava 此处一定要注意使用RxJava2的版本  **/
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    /** Android 支持 Retrofit  **/
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+}
